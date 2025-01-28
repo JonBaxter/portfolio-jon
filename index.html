@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jon Baxter - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/webp" href="images/profile-pic.webp">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info .tagline {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: #6d68e8;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #5b57c4;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 50%;
+            padding: 8px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .social-button:hover {
+            background: #f5f5f5;
+        }
+
+        .social-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #dee2e6;
+            margin: 1.5rem 0;
+            width: 100%;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 0.5rem 0;
+            color: #666;
+            cursor: pointer;
+            border: none;
+            background: none;
+            position: relative;
+            font-size: 1.3rem;
+        }
+
+        .tab.active {
+            color: #6d68e8;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #6d68e8;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .project-grid {
+            display: grid;
+            gap: 3rem;
+            padding: 1rem 0;
+        }
+
+        .project-card {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: #6d68e8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #5b57c4;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .testimonial-card {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            align-items: start;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-content {
+            flex-grow: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #6d68e8;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .project-card {
+                flex-direction: column;
+            }
+
+            .project-image {
+                max-width: 100%;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .footer {
+                    margin-top: 5rem;    
+                    padding-bottom: 2rem;  
+                    text-align: center;
+                    font-size: 0.9rem;
+                    width: 100%;            
+                    display: flex;         
+                    justify-content: center;
+                    align-items: center; 
+            }
+
+            .testimonial-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .tab {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/profile-pic.webp" alt="Jon Baxter" class="profile-pic">
+            <div class="profile-info">
+                <h1>Jon Baxter</h1>
+                <p>Product Manager / Bubble Developer / Startup Founder</p>
+                <p class="tagline">Are you looking for a freelance Bubble Dev to get your project off the ground?</p>
+                <a href="mailto:jon@jonbaxter.com" class="cta-button" target="_blank">Get in touch</a>
+                <div class="social-links">
+                    <a href="https://twitter.com/JonBaxter17" target="_blank" class="social-button">
+                        <img src="images/twitter.png" alt="Twitter">
+                    </a>
+                    <a href="https://www.linkedin.com/in/jon-baxter/" target="_blank" class="social-button">
+                        <img src="images/linkedin.png" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('projects')">Projects</button>
+            <button class="tab" onclick="switchTab('testimonials')">Testimonials</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="projects" class="tab-content active">
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/kidsbook.png" alt="Kidsbook">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Kidsbook</h3>
+                        <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <a href="https://kidsbook.com.au/" class="project-link" target="_blank">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/feedbackstream.png" alt="FeedbackStream">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">FeedbackStream</h3>
+                        <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <a href="https://feedbackstream.ai/" class="project-link" target="_blank">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/history-timelines.png" alt="History Timelines">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">History Timelines</h3>
+                        <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <a href="https://historytimelines.co/" class="project-link" target="_blank">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="testimonials" class="tab-content">
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/adam.jpg" alt="Adam">
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"I've had the pleasure of working with Jon, a highly skilled and certified Bubble Developer who consistently delivered quality features to the Kidsbook platform that elevated our users experience. His calm and thoughtful approach to development, combined with a broad range of additional tech skills, truly sets him apart. Jon has not only mastered Bubble but also gained expertise in setting up Supabase databases, creating JavaScript widgets, integrating extensively with Salesforce Sales Cloud, and crafting Google Analytics Funnel Reports, among other things.
+
+                            Jon’s holistic approach as a no-code/low-code developer extends beyond just building - he excels in product management and conducting user research to identify and solve user-centeric problems. I would highly recommend Jon for any low-code/no-code project, from the initial concept phase to complex, fully-realised builds. His versatility and dedication make him a valuable asset to any team or start-up."</p>
+                        <p class="testimonial-author">- Adam Heaney</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/ab.jpg" alt="Anabella">
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"I’ve had the pleasure of working with Jon since the early days of Kidsbook. He has been an invaluable member of the team from the start. Jon demonstrated an exceptional ability to think strategically and creatively, always bringing fresh ideas on how we could improve our products we offered to customers.
+
+                            Jon is not only highly intelligent but also dedicated to his work. His problem-solving skills and attention to detail have consistently helped us overcome challenges and refine our offerings. Whether it was brainstorming new features, optimising user experience, or exploring ways to better meet the needs of our customers, Jon's contributions have had a lasting and positive impact on the business.
+                            
+                            His collaborative spirit and proactive approach make him a great work mate - I highly recommend him to anyone looking for a smart, driven, and innovative developer."</p>
+                        <p class="testimonial-author">- Anabella de Sousa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
